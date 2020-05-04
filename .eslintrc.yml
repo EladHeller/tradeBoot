@@ -4,9 +4,14 @@ extends:
 env:
   browser: true
   es6: true
+  webextensions: true
+
+parser: babel-eslint
+parserOptions:
+  allowImportExportEverywhere: true
 
 rules:
-  max-len: [error, 120]
+  import/extensions: off
   linebreak-style: off
   no-underscore-dangle: off
   comma-dangle: [error, always-multiline]

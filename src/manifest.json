@@ -9,6 +9,9 @@
         ],
 	"background": {
 		"persistent":false,
-		"scripts": ["wikiParser.js","boot.js"]
-  }
+		"scripts": ["main.js"]
+  },
+  "web_accessible_resources": [
+    "utils.js", "WikiParser.js", "WikiTableParser.js", "WikiUpdater.js", "Company.js", "TradeTemplateBoot.js"
+  ]
 }
