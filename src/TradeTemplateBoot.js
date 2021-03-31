@@ -1,5 +1,5 @@
-/*
-const tradeTemplateBoot = new TradeTemplateBoot(2019)
+﻿/*
+const tradeTemplateBoot = new TradeTemplateBoot(2020)
 tradeTemplateBoot.run()
 
 
@@ -19,13 +19,10 @@ x.newArticleText
 /* eslint-disable no-use-before-define */
 // eslint-disable-next-line
 
-import Company from './Company.js';
-import * as WikiParser from './WikiParser.js';
-
 const mayaLinkRegex = /^http:\/\/maya\.tase\.co\.il\/company\/(\d*)\?view=reports$/;
 const jsonLink = 'http://mayaapi.tase.co.il/api/company/financereports?companyId=';
 const companyPageLink = 'http://maya.tase.co.il/company/';
-const companyReportView = '?view=reports';
+const reportView = '?view=reports';
 const mayaGetOptions = {
   method: 'get',
   credentials: 'include',
@@ -38,7 +35,7 @@ const mayaOptionsOptions = {
   credentials: 'include',
 };
 
-export default class TradeTemplateBoot {
+class TradeTemplateBoot {
   constructor(year) {
     if (!year) {
       throw new Error('year parameter is required');
@@ -80,7 +77,7 @@ export default class TradeTemplateBoot {
     let extLink;
     Object.values(pages).forEach((company) => {
       extLink = company.extlinks.find((link) => link['*'].match(mayaLinkRegex))['*'];
-      const companyFinnaceDetailsUrl = extLink.replace(companyPageLink, jsonLink).replace(companyReportView, '');
+      const companyFinnaceDetailsUrl = extLink.replace(companyPageLink, jsonLink).replace(reportView, '');
 
       fetch(companyFinnaceDetailsUrl, mayaOptionsOptions)
         .then(() => fetch(companyFinnaceDetailsUrl, mayaGetOptions))

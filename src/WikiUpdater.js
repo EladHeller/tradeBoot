@@ -1,5 +1,3 @@
-import {objectToFormData} from './utils.js';
-
 let _token;
 
 chrome.storage.local.get('revisionData', (res) => {
@@ -17,7 +15,7 @@ fetch('https://he.wikipedia.org/w/api.php?action=query&meta=tokens&format=json&a
     _token = res.query.tokens.csrftoken;
   });
 
-export default class WikiUpdater {
+class WikiUpdater {
   constructor() {
     this._edits = [];
   }

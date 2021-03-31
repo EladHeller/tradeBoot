@@ -1,5 +1,3 @@
-import * as WikiParser from './WikiParser.js';
-
 const getNextRowDelimiterIndex = (rowText, currIndex, delimiter) => {
   const nextDelimiterIndex1 = WikiParser.nextWikiText(rowText, currIndex, delimiter + delimiter);
   const nextDelimiterIndex2 = WikiParser.nextWikiText(rowText, currIndex, `\n${delimiter}`);
@@ -87,7 +85,7 @@ const tableTextToObject = (tableText) => {
   return tableData;
 };
 
-export default class WikiTableParser {
+class WikiTableParser {
   constructor(articleText) {
     this._articleContent = articleText;
     const tableTexts = findTablesText(articleText);

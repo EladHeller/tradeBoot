@@ -1,4 +1,4 @@
-const TEMPLATE_NAME = 'חברה מסחרית';
+﻿const TEMPLATE_NAME = 'חברה מסחרית';
 const lossStr = 'הפסד של';
 const thousandStr = '1000 (מספר)|אלף';
 const millionStr = 'מיליון';
@@ -53,21 +53,17 @@ const getFieldString = (fieldData, year, reference, name, isFirst) => {
   return finalString;
 };
 
-export default class Company {
+class Company {
   constructor(name, mayaData, wikiData, year) {
     this.name = name;
 
-    let mayaPromise = Promise.resolve();
-
     if (mayaData) {
-      mayaPromise = this.appendMayaData(mayaData, year);
+      this.appendMayaData(mayaData, year);
     }
-    mayaPromise.then(() => {
-      if (wikiData) {
-        this.appendWikiData(wikiData);
-      }
-      this.updateWikiTamplate();
-    });
+    if (wikiData) {
+      this.appendWikiData(wikiData);
+    }
+    this.updateWikiTamplate();
   }
 
   updateCompanyArticle() {
@@ -108,7 +104,6 @@ export default class Company {
     this.reference = wikiData.extlinks[0]['*'];
 
 
-    const WikiTemplateParser = await import('./WikiTemplateParser');
     this.templateParser = new WikiTemplateParser(this.articleText, TEMPLATE_NAME);
   }
 

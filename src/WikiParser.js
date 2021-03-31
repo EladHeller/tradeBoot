@@ -2,10 +2,10 @@ const nowiki = '<nowiki>';
 const nowikiEnd = '</nowiki>';
 
 
-export const noWikiEndTagIndex = (text, startIndex) => text
+const noWikiEndTagIndex = (text, startIndex) => text
   .indexOf(nowikiEnd, startIndex) + nowikiEnd.length;
 
-export const nextWikiText = (text, currIndex, str) => {
+const nextWikiText = (text, currIndex, str) => {
   while (text.substr(currIndex, str.length) !== str && currIndex < text.length) {
     if (text.substr(currIndex, nowiki.length) === nowiki) {
       currIndex = noWikiEndTagIndex(text, currIndex);
@@ -24,7 +24,7 @@ export const nextWikiText = (text, currIndex, str) => {
   return currIndex;
 };
 
-export const buildTableRow = (fields, style, isHeader) => {
+const buildTableRow = (fields, style, isHeader) => {
   const delimiter = isHeader ? '!' : '|';
   style = style ? (style + delimiter) : '';
   let rowStr = `\n|-\n${delimiter}${style}[[${fields[0]}]]`;
@@ -32,4 +32,9 @@ export const buildTableRow = (fields, style, isHeader) => {
     rowStr += ` || ${fields[i] === undefined ? '---' : fields[i]}`;
   }
   return rowStr;
+};
+const WikiParser = {
+  nextWikiText,
+  buildTableRow,
+  noWikiEndTagIndex,
 };

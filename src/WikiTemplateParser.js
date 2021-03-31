@@ -1,6 +1,4 @@
-import * as WikiParser from './WikiParser.js';
-
-export default class WikiTemplateParser {
+class WikiTemplateParser {
   constructor(articleContent, templateName) {
     this._articleContent = articleContent;
     this._templateName = templateName;
